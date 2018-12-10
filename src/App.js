@@ -87,9 +87,9 @@ class App extends Component {
 
             </li>
           </ul>
-          <DeleteButton deleteButton={this.deletePost} className='delete' />
+          <DeleteButton deleteButton={this.deletePost} />
           <input onChange={(e) => this.handleEditInput(e.target.value)} className='input'></input>
-          <button onClick={() => this.updatePost()}> Edit </button>
+          <button onClick={() => this.updatePost()} className='edit'> Edit </button>
         </div>
 
       )
@@ -110,10 +110,13 @@ class App extends Component {
         <span className='title'>
           <h2> Simple List </h2>
         </span>
+      <span className='fixed'> Thanks for viewing my app!</span>
         <InputBox addItem={this.addItem} />
         {displayTodos}
-        {/* {displayPoke} */}
+      <div className='body'> 
       </div>
+      </div>
+    
     );
   }
 }
