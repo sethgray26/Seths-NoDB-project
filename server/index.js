@@ -6,6 +6,8 @@ const app = express()
 
 app.use(express.json())
 
+// app.get('/https://pokeapi.co/api/v2/pokemon/ditto/', controller.getPoke)
+
 app.get('/api/todos', controller.getAll)
 
 app.post('/api/todo', controller.createNew)

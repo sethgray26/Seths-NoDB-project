@@ -6,6 +6,9 @@ module.exports = {
         console.log('getAll')
         res.status(200).send(todos)
     },
+    // getPoke: (req,res) => {
+    //     res.status(200).send(todos)
+    // },
     createNew: (req, res) => {
         console.log('Post end point is firing')
         console.log(req.body)

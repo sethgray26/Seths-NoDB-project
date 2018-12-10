@@ -12,7 +12,8 @@ class App extends Component {
     this.state = {
       addInput: '',
       editInput: '',
-      todos: []
+      todos: [],
+      poke: []
     }
   }
   componentDidMount() {
@@ -23,11 +24,17 @@ class App extends Component {
           todos: res.data
         })
       })
-  }
+    axios.get('https://pokeapi.co/api/v2/pokemon-form/132/')
+      .then(res => {
+        this.setState({
+          poke: res.data
+        })
+      })
+      }
   deletePost = (id) => {
     console.log('Delete event is working')
     console.log(this.state.input)
-    
+
     axios.delete(`/api/todo/:${id}`, { text: this.state.input }).then(res => {
       console.log(res)
       this.setState({
@@ -54,18 +61,18 @@ class App extends Component {
       addInput: val
     })
   }
-  addItem =(text)=> {
-      axios.post(`/api/todo`, {text}
-        )
-        .then(res => {
-          this.setState({
-            todos: res.data
-          })
+  addItem = (text) => {
+    axios.post(`/api/todo`, { text }
+    )
+      .then(res => {
+        this.setState({
+          todos: res.data
         })
-    }
-  handleEditInput(val){
+      })
+  }
+  handleEditInput(val) {
     this.setState({
-       editInput: val 
+      editInput: val
     })
   }
   render() {
@@ -77,26 +84,38 @@ class App extends Component {
           <ul>
             <li>
               {todoItem.text}
-            
+
             </li>
           </ul>
-          <DeleteButton deleteButton={this.deletePost} className='delete'/>
+          <DeleteButton deleteButton={this.deletePost} className='delete' />
           <input onChange={(e) => this.handleEditInput(e.target.value)} className='input'></input>
           <button onClick={() => this.updatePost()}> Edit </button>
-            </div>
-        
-        )
-      })
-      return (
-        <div className="App">
-          <span className='title'>
+        </div>
+
+      )
+    })
+    // const displayPoke = this.state.poke.map(pokeItem => {
+    //   return(
+    //     <div key={pokeItem.id}>
+    //       <ul>
+    //         <li>
+    //             {pokeItem}
+    //         </li>
+    //       </ul>
+    //     </div>
+    //   )
+    // })
+    return (
+      <div className="App">
+        <span className='title'>
           <h2> Simple List </h2>
-          </span>
-        <InputBox addItem={this.addItem}/>
+        </span>
+        <InputBox addItem={this.addItem} />
         {displayTodos}
-          </div>
-          );
-        }
-      }
-      
-      export default App;
+        {/* {displayPoke} */}
+      </div>
+    );
+  }
+}
+
+export default App;
