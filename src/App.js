@@ -3,6 +3,7 @@ import './App.css'
 import axios from 'axios'
 import DeleteButton from './components/DeleteButton'
 import InputBox from './components/InputBox'
+import Header from './components/Header'
 
 
 
@@ -84,7 +85,6 @@ class App extends Component {
           <ul>
             <li>
               {todoItem.text}
-
             </li>
           </ul>
           <DeleteButton deleteButton={this.deletePost} />
@@ -99,7 +99,7 @@ class App extends Component {
     //     <div key={pokeItem.id}>
     //       <ul>
     //         <li>
-    //             {pokeItem}
+    //             {pokeItem}0
     //         </li>
     //       </ul>
     //     </div>
@@ -107,10 +107,7 @@ class App extends Component {
     // })
     return (
       <div className="App">
-        <span className='title'>
-          <h2> Simple List </h2>
-        </span>
-      <span className='fixed'> Thanks for viewing my app!</span>
+        <Header />
         <InputBox addItem={this.addItem} />
         {displayTodos}
       <div className='body'> 
